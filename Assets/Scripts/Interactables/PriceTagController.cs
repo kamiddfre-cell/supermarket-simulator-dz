@@ -65,7 +65,7 @@ namespace Supermarket.Interactables
             
             if (priceText != null)
             {
-                priceText.text = $"${retailPrice:F2}";
+                priceText.text = $"{retailPrice:F0} DA";
             }
         }
         

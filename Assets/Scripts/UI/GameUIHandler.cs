@@ -86,7 +86,7 @@ public class GameUIHandler : MonoBehaviour
             int quantity = _playerHandService.GetQuantityInHand();
             bool isOpen = _playerHandService.IsBoxOpen();
 
-            string statusText = isOpen ? "открыта" : "закрыта";
+            string statusText = isOpen ? "مفتوح" : "مغلق";
             
             if (productInHand != null)
             {
@@ -95,7 +95,7 @@ public class GameUIHandler : MonoBehaviour
             else
             {
                 // Показываем информацию о пустой коробке
-                _heldBoxInfoLabel.text = $"Коробка {statusText}: Пустая";
+                _heldBoxInfoLabel.text = $"الصندوق {statusText}: فارغ";
             }
             
             _heldBoxInfoLabel.style.display = DisplayStyle.Flex;
@@ -111,7 +111,7 @@ public class GameUIHandler : MonoBehaviour
         if (_moneyAmountLabel == null || _playerDataService == null) return;
 
         float money = _playerDataService.CurrentPlayerData.Money;
-        _moneyAmountLabel.text = $"Деньги: ${money:F0}";
+        _moneyAmountLabel.text = $"المال: {money:F0} DA";
     }
 
     public void ShowNotification(string message, float duration = 3f)

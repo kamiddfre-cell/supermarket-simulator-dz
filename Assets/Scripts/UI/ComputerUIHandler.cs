@@ -393,12 +393,12 @@ public class ComputerUIHandler : MonoBehaviour
 
         var subcategories = new Dictionary<ProductSubcategory, string>
         {
-            { ProductSubcategory.All, "Все товары" },
-            { ProductSubcategory.Drinks, "Напитки" },
-            { ProductSubcategory.Snacks, "Снеки" },
-            { ProductSubcategory.Dairy, "Молочка" },
-            { ProductSubcategory.Sweets, "Сладости" },
-            { ProductSubcategory.Nuts, "Орехи" }
+            { ProductSubcategory.All, "كل المنتجات" },
+            { ProductSubcategory.Drinks, "مشروبات" },
+            { ProductSubcategory.Snacks, "مقرمشات" },
+            { ProductSubcategory.Dairy, "حليب ومشتقاته" },
+            { ProductSubcategory.Sweets, "حلويات" },
+            { ProductSubcategory.Nuts, "مكسرات" }
         };
 
         foreach (var subcategory in subcategories)
@@ -586,14 +586,14 @@ public class ComputerUIHandler : MonoBehaviour
 
         if (currentQuantity == 0)
         {
-            // Показываем только кнопку "Добавить"
+            // Показываем только кнопку "إضافة"
             var addButton = new Button(() => {
                 cart[product] = 1;
                 updateCartAction();
                 // Перерисовываем карточку
                 ReplaceCard(product, cart, updateCartAction);
             });
-            addButton.text = product.ItemsPerBox > 1 ? "Добавить коробку" : "Добавить";
+            addButton.text = product.ItemsPerBox > 1 ? "Добавить коробку" : "إضافة";
             addButton.style.height = 35;
             addButton.style.paddingLeft = addButton.style.paddingRight = 20;
             addButton.style.backgroundColor = new StyleColor(new Color(76f/255f, 175f/255f, 80f/255f));
@@ -949,7 +949,7 @@ public class ComputerUIHandler : MonoBehaviour
 
             // Кнопка применить
             var applyButton = new Button(() => OnApplyPriceClicked(productConfig, salePriceField));
-            applyButton.text = "Применить";
+            applyButton.text = "تطبيق";
             applyButton.style.width = new Length(20, LengthUnit.Percent);
             applyButton.style.height = 30;
             applyButton.style.fontSize = 12;
@@ -1124,7 +1124,7 @@ public class ComputerUIHandler : MonoBehaviour
             cardFooter.style.justifyContent = Justify.SpaceBetween;
             cardFooter.style.alignItems = Align.Center;
 
-            var price = new Label(license.Price > 0 ? $"${license.Price:F0}" : "Бесплатно");
+            var price = new Label(license.Price > 0 ? $"${license.Price:F0}" : "مجاني");
             price.style.fontSize = 20;
             price.style.color = new StyleColor(new Color(76f/255f, 175f/255f, 80f/255f));
             price.style.unityFontStyleAndWeight = FontStyle.Bold;
@@ -1135,7 +1135,7 @@ public class ComputerUIHandler : MonoBehaviour
             if (isPurchased)
             {
                 // Лицензия уже куплена
-                var purchasedLabel = new Label("Куплено");
+                var purchasedLabel = new Label("تم الشراء");
                 purchasedLabel.style.fontSize = 14;
                 purchasedLabel.style.color = new StyleColor(new Color(76f/255f, 175f/255f, 80f/255f));
                 purchasedLabel.style.unityFontStyleAndWeight = FontStyle.Bold;
@@ -1146,7 +1146,7 @@ public class ComputerUIHandler : MonoBehaviour
             {
                 // Лицензия доступна для покупки
                 var purchaseButton = new Button(() => OnPurchaseLicenseClicked(license.LicenseId));
-                purchaseButton.text = "Купить";
+                purchaseButton.text = "شراء";
                 purchaseButton.style.paddingLeft = purchaseButton.style.paddingRight = 16;
                 purchaseButton.style.paddingTop = purchaseButton.style.paddingBottom = 8;
                 purchaseButton.style.backgroundColor = new StyleColor(new Color(233f/255f, 69f/255f, 96f/255f));
@@ -1303,7 +1303,7 @@ public class ComputerUIHandler : MonoBehaviour
         if (activeOrders.Count == 0)
         {
             // Показываем сообщение об отсутствии заказов
-            var noOrdersLabel = new Label("Нет активных заказов");
+            var noOrdersLabel = new Label("لا توجد طلبات نشطة");
             noOrdersLabel.style.color = new StyleColor(new Color(0.6f, 0.6f, 0.6f));
             noOrdersLabel.style.fontSize = 14;
             noOrdersLabel.style.unityTextAlign = TextAnchor.MiddleCenter;
@@ -1344,7 +1344,7 @@ public class ComputerUIHandler : MonoBehaviour
         orderId.style.color = Color.white;
         orderId.style.unityFontStyleAndWeight = FontStyle.Bold;
 
-        var status = new Label("В пути");
+        var status = new Label("في الطريق");
         status.style.fontSize = 12;
         status.style.color = new StyleColor(new Color(76f/255f, 175f/255f, 80f/255f));
         status.style.backgroundColor = new StyleColor(new Color(15f/255f, 52f/255f, 96f/255f));
@@ -1437,7 +1437,7 @@ public class ComputerUIHandler : MonoBehaviour
         total.style.unityFontStyleAndWeight = FontStyle.Bold;
 
         var cancelButton = new Button(() => OnCancelOrderClicked(order.OrderId));
-        cancelButton.text = "Отменить заказ";
+        cancelButton.text = "إلغاء الطلب";
         cancelButton.style.paddingLeft = cancelButton.style.paddingRight = 12;
         cancelButton.style.paddingTop = cancelButton.style.paddingBottom = 6;
         cancelButton.style.backgroundColor = new StyleColor(new Color(233f/255f, 69f/255f, 96f/255f));
@@ -1460,7 +1460,7 @@ public class ComputerUIHandler : MonoBehaviour
 
     private string FormatTime(float seconds)
     {
-        if (seconds <= 0) return "Доставляется...";
+        if (seconds <= 0) return "جاري التوصيل...";
         
         int minutes = Mathf.FloorToInt(seconds / 60f);
         int secs = Mathf.FloorToInt(seconds % 60f);

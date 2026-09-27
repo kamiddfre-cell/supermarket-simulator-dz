@@ -19,7 +19,7 @@ public class PlayerData
 
     public PlayerData()
     {
-        Money = 1000; // Начальные деньги
+        Money = 25000; // Начальные деньги
         // StoreLevel = 1;
         // UnlockedItemIDs = new List<string>();
     }

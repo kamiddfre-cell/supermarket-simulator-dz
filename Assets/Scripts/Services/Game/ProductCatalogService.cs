@@ -169,16 +169,16 @@ public class ProductCatalogService : IProductCatalogService
         // Определяем подкатегорию по названию товара
         string productName = product.ProductName.ToLower();
         
-        if (productName.Contains("сок") || productName.Contains("чай") || productName.Contains("вода") || productName.Contains("энергетик"))
+        if (productName.Contains("сок") || productName.Contains("чай") || productName.Contains("вода") || productName.Contains("энергетик") || productName.Contains("juice") || productName.Contains("water") || productName.Contains("tea") || productName.Contains("energy") || productName.Contains("عصير") || productName.Contains("ماء") || productName.Contains("شاي"))
             return ProductSubcategory.Drinks;
             
-        if (productName.Contains("чипсы") || productName.Contains("крекеры"))
+        if (productName.Contains("чипсы") || productName.Contains("крекеры") || productName.Contains("chips") || productName.Contains("crackers") || productName.Contains("شيبس"))
             return ProductSubcategory.Snacks;
             
-        if (productName.Contains("молоко") || productName.Contains("йогурт") || productName.Contains("творог"))
+        if (productName.Contains("молоко") || productName.Contains("йогурт") || productName.Contains("творог") || productName.Contains("milk") || productName.Contains("yogurt") || productName.Contains("حليب") || productName.Contains("ياغورت"))
             return ProductSubcategory.Dairy;
             
-        if (productName.Contains("шоколад") || productName.Contains("конфеты") || productName.Contains("жвачка"))
+        if (productName.Contains("шоколад") || productName.Contains("конфеты") || productName.Contains("жвачка") || productName.Contains("chocolate") || productName.Contains("gum") || productName.Contains("شوكولا") || productName.Contains("علكة"))
             return ProductSubcategory.Sweets;
             
         if (productName.Contains("орехи") || productName.Contains("арахис") || productName.Contains("фисташки"))

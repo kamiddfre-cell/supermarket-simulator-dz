@@ -83,7 +83,7 @@ public class CashDeskUIHandler : MonoBehaviour
             _scannedItemsContainer.Clear();
         
         if(_totalAmountLabel != null)
-            _totalAmountLabel.text = "$0.00";
+            _totalAmountLabel.text = "0 DA";
     }
 
     private void SubscribeToCashDeskEvents()
@@ -123,7 +123,7 @@ public class CashDeskUIHandler : MonoBehaviour
         var nameLabel = new Label(scannedItem.ProductName);
         nameLabel.AddToClassList("item-name");
 
-        var priceLabel = new Label(scannedItem.BaseSalePrice.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+        var priceLabel = new Label($"{scannedItem.BaseSalePrice:F0} DA");
         priceLabel.AddToClassList("item-price");
         
         itemRow.Add(nameLabel);
@@ -137,7 +137,7 @@ public class CashDeskUIHandler : MonoBehaviour
     {
         if (_totalAmountLabel != null)
         {
-            _totalAmountLabel.text = newTotal.ToString("C", CultureInfo.GetCultureInfo("en-US"));
+            _totalAmountLabel.text = $"{newTotal:F0} DA";
         }
     }
     

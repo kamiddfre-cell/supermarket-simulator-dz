@@ -20,8 +20,8 @@ namespace Supermarket.Services.Game
         [SerializeField] private CharacterAppearanceConfig _appearanceConfig;
         
         [Header("Customer Configuration")]
-        [SerializeField] private float _minCustomerMoney = 50f;
-        [SerializeField] private float _maxCustomerMoney = 200f;
+        [SerializeField] private float _minCustomerMoney = 800f;
+        [SerializeField] private float _maxCustomerMoney = 8000f;
         [SerializeField] private int _minItemsInList = 1;
         [SerializeField] private int _maxItemsInList = 5;
         
@@ -292,7 +292,7 @@ namespace Supermarket.Services.Game
             else
             {
                 // Fallback на старые имена если конфиг не настроен
-                string[] names = { "Иван", "Мария", "Петр", "Анна", "Дмитрий", "Елена", "Алексей", "Ольга" };
+                string[] names = { "محمد", "أمين", "ياسين", "مراد", "سارة", "ريم", "إيمان", "ليلى", "وليد", "رضا", "سمير", "نادية", "كمال", "عبد القادر", "سمية", "خديجة" };
                 customerName = names[Random.Range(0, names.Length)];
             }
             
