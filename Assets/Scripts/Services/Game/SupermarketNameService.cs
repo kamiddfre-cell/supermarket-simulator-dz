@@ -5,7 +5,7 @@ namespace Supermarket.Services.Game
 {
     public class SupermarketNameService : ISupermarketNameService
     {
-        private string _currentName = "سوبرماركت الجزائر";
+        private string _currentName = "SUPERETTE DZ";
         
         public string CurrentName => _currentName;
         
