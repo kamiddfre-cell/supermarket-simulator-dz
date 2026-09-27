@@ -7,17 +7,17 @@
             <ui:VisualElement name="GameMenu" class="game-menu">
                 <!-- Заголовок -->
                 <ui:VisualElement name="header-section" class="header-section">
-                    <ui:Label text="МЕНЮ ИГРЫ" name="game-menu-title" class="game-menu-title" />
-                    <ui:Label text="Выберите действие" class="subtitle" />
+                    <ui:Label text="قائمة اللعبة" name="game-menu-title" class="game-menu-title" />
+                    <ui:Label text="اختر إجراء" class="subtitle" />
                 </ui:VisualElement>
                 
                 <!-- Кнопки меню -->
                 <ui:VisualElement name="menu-buttons" class="menu-buttons">
-                    <ui:Button text="Продолжить игру" name="ResumeButton" class="game-menu-button primary-button" />
-                    <ui:Button text="Быстрое сохранение" name="QuickSaveButton" class="game-menu-button secondary-button" />
-                    <ui:Button text="Сохранить игру" name="SaveGameButton" class="game-menu-button secondary-button" />
-                    <ui:Button text="Загрузить игру" name="LoadGameButton" class="game-menu-button secondary-button" />
-                    <ui:Button text="Выход в главное меню" name="ExitToMenuButton" class="game-menu-button danger-button" />
+                    <ui:Button text="متابعة اللعب" name="ResumeButton" class="game-menu-button primary-button" />
+                    <ui:Button text="حفظ سريع" name="QuickSaveButton" class="game-menu-button secondary-button" />
+                    <ui:Button text="حفظ اللعبة" name="SaveGameButton" class="game-menu-button secondary-button" />
+                    <ui:Button text="تحميل اللعبة" name="LoadGameButton" class="game-menu-button secondary-button" />
+                    <ui:Button text="العودة للقائمة الرئيسية" name="ExitToMenuButton" class="game-menu-button danger-button" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

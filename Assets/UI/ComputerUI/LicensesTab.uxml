@@ -4,8 +4,8 @@
     <ui:VisualElement name="LicensesTab" class="tab-content">
         <!-- Header -->
         <ui:VisualElement name="Header" class="section-header">
-            <ui:Label text="Лицензии на товары" name="HeaderTitle" class="header-title" />
-            <ui:Label text="Покупайте лицензии для разблокировки новых товаров" name="HeaderSubtitle" class="header-subtitle" />
+            <ui:Label text="تراخيص المنتجات" name="HeaderTitle" class="header-title" />
+            <ui:Label text="اشتر التراخيص لفتح منتجات جديدة" name="HeaderSubtitle" class="header-subtitle" />
         </ui:VisualElement>
         
         <!-- License Cards Container -->
@@ -19,7 +19,7 @@
         <ui:VisualElement name="LicenseCardTemplate" class="license-card" style="display: none;">
             <ui:VisualElement name="CardHeader" class="license-card-header">
                 <ui:Label name="LicenseName" text="License Name" class="license-name" />
-                <ui:Label name="ProductCount" text="5 товаров" class="product-count" />
+                <ui:Label name="ProductCount" text="5 منتجات" class="product-count" />
             </ui:VisualElement>
             
             <ui:Label name="Description" text="License description" class="license-description" />
@@ -29,9 +29,9 @@
             </ui:VisualElement>
             
             <ui:VisualElement name="CardFooter" class="license-card-footer">
-                <ui:Label name="Price" text="$500" class="license-price" />
-                <ui:Button name="PurchaseButton" text="Купить" class="primary-button purchase-button" />
-                <ui:Label name="PurchasedLabel" text="Куплено" class="purchased-label" style="display: none;" />
+                <ui:Label name="Price" text="500 DA" class="license-price" />
+                <ui:Button name="PurchaseButton" text="شراء" class="primary-button purchase-button" />
+                <ui:Label name="PurchasedLabel" text="تم الشراء" class="purchased-label" style="display: none;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

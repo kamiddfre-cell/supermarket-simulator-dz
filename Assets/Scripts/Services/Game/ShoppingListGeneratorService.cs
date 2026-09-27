@@ -84,10 +84,10 @@ namespace Supermarket.Services.Game
                 shoppingList.Add(item);
                 totalCost += itemTotalCost;
                 
-                Debug.Log($"ShoppingListGeneratorService: Added {product.ProductName} x{desiredQuantity} (${retailPrice:F2} each, total: ${itemTotalCost:F2})");
+                Debug.Log($"ShoppingListGeneratorService: Added {product.ProductName} x{desiredQuantity} ({retailPrice:F0} DA each, total: {itemTotalCost:F0} DA)");
             }
             
-            Debug.Log($"ShoppingListGeneratorService: Generated shopping list with {shoppingList.Count} items, total cost: ${totalCost:F2}, budget: ${availableBudget:F2}");
+            Debug.Log($"ShoppingListGeneratorService: Generated shopping list with {shoppingList.Count} items, total cost: {totalCost:F0} DA, budget: {availableBudget:F0} DA");
             
             return shoppingList;
         }

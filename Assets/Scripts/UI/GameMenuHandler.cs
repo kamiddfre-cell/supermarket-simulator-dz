@@ -191,11 +191,11 @@ namespace Supermarket.UI
                 string saveName = $"QuickSave_{System.DateTime.Now:yyyyMMdd_HHmmss}";
                 if (_saveGameService.SaveGame(saveName))
                 {
-                    _notificationService?.ShowNotification($"Игра сохранена: {saveName}", NotificationType.Success);
+                    _notificationService?.ShowNotification($"تم حفظ اللعبة: {saveName}", NotificationType.Success);
                 }
                 else
                 {
-                    _notificationService?.ShowNotification("Ошибка при сохранении игры", NotificationType.Error);
+                    _notificationService?.ShowNotification("حدث خطأ أثناء حفظ اللعبة", NotificationType.Error);
                 }
             }
         }

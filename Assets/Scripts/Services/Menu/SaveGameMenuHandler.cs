@@ -285,8 +285,8 @@ namespace Supermarket.Services.Menu
                 SetText(_saveInfoTitle, _selectedSave.SaveName);
                 SetText(_saveInfoDate, _selectedSave.SaveDate.ToString("dd.MM.yyyy HH:mm"));
                 SetText(_saveInfoPlayTime, FormatPlayTime(_selectedSave.PlayTime));
-                SetText(_saveInfoMoney, $"${_selectedSave.Money:F2}");
-                SetText(_saveInfoDay, $"День {_selectedSave.Day}");
+                SetText(_saveInfoMoney, $"{_selectedSave.Money:F0} DA");
+                SetText(_saveInfoDay, $"اليوم {_selectedSave.Day}");
                 
                 // Загружаем и отображаем скриншот
                 LoadAndDisplayScreenshot(_selectedSave.ScreenshotPath);
@@ -296,7 +296,7 @@ namespace Supermarket.Services.Menu
             }
             else
             {
-                SetText(_saveInfoTitle, "Выберите сохранение");
+                SetText(_saveInfoTitle, "اختر ملف حفظ");
                 SetText(_saveInfoDate, "");
                 SetText(_saveInfoPlayTime, "");
                 SetText(_saveInfoMoney, "");

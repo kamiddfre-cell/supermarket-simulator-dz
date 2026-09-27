@@ -16,20 +16,20 @@
             
             <!-- Заголовок с подзаголовком -->
             <ui:VisualElement name="header-section" class="header-section">
-                <ui:Label text="СИМУЛЯТОР" name="title-main" class="title-main" />
-                <ui:Label text="СУПЕРМАРКЕТА" name="title-sub" class="title-sub" />
-                <ui:Label text="Управляйте своим магазином" name="subtitle" class="subtitle" />
+                <ui:Label text="محاكي" name="title-main" class="title-main" />
+                <ui:Label text="السوبرماركت" name="title-sub" class="title-sub" />
+                <ui:Label text="أدر متجرك الخاص" name="subtitle" class="subtitle" />
             </ui:VisualElement>
             
             <!-- Меню кнопок -->
             <ui:VisualElement name="menu-section" class="menu-section">
-                <ui:Button name="ContinueButton" text="ПРОДОЛЖИТЬ" class="menu-button menu-button-primary" style="display: none;" />
+                <ui:Button name="ContinueButton" text="متابعة" class="menu-button menu-button-primary" style="display: none;" />
                 
-                <ui:Button name="NewGameButton" text="НОВАЯ ИГРА" class="menu-button menu-button-secondary" />
+                <ui:Button name="NewGameButton" text="لعبة جديدة" class="menu-button menu-button-secondary" />
                 
-                <ui:Button name="LoadGameButton" text="ЗАГРУЗИТЬ" class="menu-button menu-button-secondary" />
+                <ui:Button name="LoadGameButton" text="تحميل اللعبة" class="menu-button menu-button-secondary" />
                 
-                <ui:Button name="ExitButton" text="ВЫХОД" class="menu-button menu-button-exit" />
+                <ui:Button name="ExitButton" text="خروج" class="menu-button menu-button-exit" />
             </ui:VisualElement>
             
         </ui:VisualElement>

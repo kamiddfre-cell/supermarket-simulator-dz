@@ -90,7 +90,7 @@ public class GameUIHandler : MonoBehaviour
             
             if (productInHand != null)
             {
-                _heldBoxInfoLabel.text = $"Коробка {statusText}: {productInHand.ProductName} x{quantity}";
+                _heldBoxInfoLabel.text = $"الصندوق {statusText}: {productInHand.ProductName} x{quantity}";
             }
             else
             {

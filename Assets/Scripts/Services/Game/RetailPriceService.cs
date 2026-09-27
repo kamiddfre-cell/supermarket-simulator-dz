@@ -58,7 +58,7 @@ namespace Supermarket.Services.Game
             }
             
             OnPriceChanged?.Invoke(productId, price);
-            Debug.Log($"RetailPriceService: Set price for {productId} to ${price:F2}");
+            Debug.Log($"RetailPriceService: Set price for {productId} to {price:F0} DA");
         }
         
         public void ResetToBasePrice(string productId)
@@ -72,7 +72,7 @@ namespace Supermarket.Services.Game
             
             _customPrices.Remove(productId);
             OnPriceChanged?.Invoke(productId, product.BaseSalePrice);
-            Debug.Log($"RetailPriceService: Reset {productId} to base price ${product.BaseSalePrice:F2}");
+            Debug.Log($"RetailPriceService: Reset {productId} to base price {product.BaseSalePrice:F0} DA");
         }
         
         public Dictionary<string, float> GetCustomPrices()
@@ -89,7 +89,7 @@ namespace Supermarket.Services.Game
                 foreach (var kvp in prices)
                 {
                     _customPrices[kvp.Key] = kvp.Value;
-                    Debug.Log($"RetailPriceService: Restored price for {kvp.Key}: ${kvp.Value:F2}");
+                    Debug.Log($"RetailPriceService: Restored price for {kvp.Key}: {kvp.Value:F0} DA");
                 }
             }
             

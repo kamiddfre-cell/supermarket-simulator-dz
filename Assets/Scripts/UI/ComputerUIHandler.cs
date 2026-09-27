@@ -67,7 +67,7 @@ public class ComputerUIHandler : MonoBehaviour
     // Словари для хранения количества товаров в корзинах
     private Dictionary<ProductConfig, int> _goodsCart = new Dictionary<ProductConfig, int>();
     private Dictionary<ProductConfig, int> _furnitureCart = new Dictionary<ProductConfig, int>();
-    
+
     // Текущие состояния
     private ProductSubcategory _currentSubcategory = ProductSubcategory.All;
     private FurnitureSubcategory _currentFurnitureSubcategory = FurnitureSubcategory.All;
@@ -97,14 +97,14 @@ public class ComputerUIHandler : MonoBehaviour
     private ScrollView _activeOrdersScrollView;
     private VisualElement _activeOrdersContainer;
     private VisualElement _orderCardTemplate;
-    
+
     // Элементы секции настроек магазина
     private TextField _storeNameField;
     private Button _changeStoreNameButton;
-    
+
     // Контейнер для уведомлений
     private VisualElement _computerNotificationContainer;
-    
+
     // Элемент отображения денег игрока
     private Label _playerMoneyLabel;
 
@@ -168,7 +168,7 @@ public class ComputerUIHandler : MonoBehaviour
 
         // Элементы управления ценами
         _productPriceListScrollView = _root.Q<ScrollView>("ProductPriceList");
-        
+
         // Элементы статистики
         _totalRevenueLabel = _root.Q<Label>("TotalRevenueLabel");
         _totalExpensesLabel = _root.Q<Label>("TotalExpensesLabel");
@@ -188,14 +188,14 @@ public class ComputerUIHandler : MonoBehaviour
         _activeOrdersScrollView = _root.Q<ScrollView>("ActiveOrdersScrollView");
         _activeOrdersContainer = _root.Q<VisualElement>("ActiveOrdersContainer");
         _orderCardTemplate = _root.Q<VisualElement>("OrderCardTemplate");
-        
+
         // Элементы секции настроек магазина
         _storeNameField = _root.Q<TextField>("StoreNameField");
         _changeStoreNameButton = _root.Q<Button>("ChangeStoreNameButton");
-        
+
         // Инициализируем контейнер уведомлений
         _computerNotificationContainer = _root.Q<VisualElement>("ComputerNotificationContainer");
-        
+
         // Инициализируем элемент отображения денег игрока
         _playerMoneyLabel = _root.Q<Label>("PlayerMoneyLabel");
 
@@ -205,11 +205,11 @@ public class ComputerUIHandler : MonoBehaviour
         _tabLicenses?.RegisterCallback<ClickEvent>(evt => ShowLicensesSection());
         _tabStatistics?.RegisterCallback<ClickEvent>(evt => ShowStatisticsSection());
         _tabStoreSettings?.RegisterCallback<ClickEvent>(evt => ShowStoreSettingsSection());
-        
+
         _subTabGoods?.RegisterCallback<ClickEvent>(evt => ShowGoodsSubSection());
         _subTabFurniture?.RegisterCallback<ClickEvent>(evt => ShowFurnitureSubSection());
         _subTabActiveOrders?.RegisterCallback<ClickEvent>(evt => ShowActiveOrdersSection());
-        
+
         _submitOrderButton?.RegisterCallback<ClickEvent>(OnSubmitGoodsOrderClicked);
         _submitFurnitureOrderButton?.RegisterCallback<ClickEvent>(OnSubmitFurnitureOrderClicked);
         _changeStoreNameButton?.RegisterCallback<ClickEvent>(OnChangeStoreNameClicked);
@@ -225,7 +225,7 @@ public class ComputerUIHandler : MonoBehaviour
             InitializeFurnitureSubcategories();
             PopulateProductPriceList();
         }
-        
+
         // Подписываемся на изменения денег игрока
         if (_playerDataService != null)
         {
@@ -236,7 +236,7 @@ public class ComputerUIHandler : MonoBehaviour
         {
             Debug.LogError("ComputerUIHandler: IPlayerDataService is not injected!");
         }
-        
+
         ShowShopSection(); // По умолчанию показываем секцию магазина
         ShowGoodsSubSection(); // И подсекцию товаров
     }
@@ -248,11 +248,11 @@ public class ComputerUIHandler : MonoBehaviour
         _tabLicenses?.UnregisterCallback<ClickEvent>(evt => ShowLicensesSection());
         _tabStatistics?.UnregisterCallback<ClickEvent>(evt => ShowStatisticsSection());
         _tabStoreSettings?.UnregisterCallback<ClickEvent>(evt => ShowStoreSettingsSection());
-        
+
         _subTabGoods?.UnregisterCallback<ClickEvent>(evt => ShowGoodsSubSection());
         _subTabFurniture?.UnregisterCallback<ClickEvent>(evt => ShowFurnitureSubSection());
         _subTabActiveOrders?.UnregisterCallback<ClickEvent>(evt => ShowActiveOrdersSection());
-        
+
         _submitOrderButton?.UnregisterCallback<ClickEvent>(OnSubmitGoodsOrderClicked);
         _submitFurnitureOrderButton?.UnregisterCallback<ClickEvent>(OnSubmitFurnitureOrderClicked);
         _changeStoreNameButton?.UnregisterCallback<ClickEvent>(OnChangeStoreNameClicked);
@@ -262,7 +262,7 @@ public class ComputerUIHandler : MonoBehaviour
         {
             _playerDataService.OnMoneyChanged -= UpdatePlayerMoneyDisplay;
         }
-        
+
         _salePriceFields.Clear();
         _subcategoryButtons.Clear();
         _furnitureSubcategoryButtons.Clear();
@@ -326,7 +326,7 @@ public class ComputerUIHandler : MonoBehaviour
         UpdateStatistics();
         _isActiveOrdersSectionVisible = false;
     }
-    
+
     private void ShowStoreSettingsSection()
     {
         ShowMainSection(_storeSettingsSection);
@@ -411,7 +411,7 @@ public class ComputerUIHandler : MonoBehaviour
             button.style.color = Color.white;
             button.style.borderTopLeftRadius = button.style.borderTopRightRadius = button.style.borderBottomLeftRadius = button.style.borderBottomRightRadius = 3;
             button.style.borderLeftWidth = button.style.borderRightWidth = button.style.borderTopWidth = button.style.borderBottomWidth = 0;
-            
+
             if (subcategory.Key == _currentSubcategory)
             {
                 button.style.backgroundColor = new StyleColor(new Color(15f/255f, 52f/255f, 96f/255f));
@@ -431,8 +431,8 @@ public class ComputerUIHandler : MonoBehaviour
 
     private void UpdateSubcategoryButtons()
     {
-        var subcategories = new List<ProductSubcategory> 
-        { 
+        var subcategories = new List<ProductSubcategory>
+        {
             ProductSubcategory.All, ProductSubcategory.Drinks, ProductSubcategory.Snacks,
             ProductSubcategory.Dairy, ProductSubcategory.Sweets, ProductSubcategory.Nuts
         };
@@ -455,7 +455,7 @@ public class ComputerUIHandler : MonoBehaviour
         if (_productCardsContainer == null || _productCatalogService == null) return;
 
         _productCardsContainer.Clear();
-        
+
         var availableProducts = _productCatalogService.GetOrderableProductConfigsBySubcategory(_currentSubcategory);
 
         foreach (var product in availableProducts)
@@ -471,7 +471,7 @@ public class ComputerUIHandler : MonoBehaviour
         if (_furnitureCardsContainer == null || _productCatalogService == null) return;
 
         _furnitureCardsContainer.Clear();
-        
+
         var availableFurniture = _productCatalogService.GetOrderableFurnitureConfigsBySubcategory(_currentFurnitureSubcategory);
 
         foreach (var furniture in availableFurniture)
@@ -510,7 +510,7 @@ public class ComputerUIHandler : MonoBehaviour
         imageContainer.style.backgroundColor = new StyleColor(Color.white); // Белый фон
         imageContainer.style.alignItems = Align.Center;
         imageContainer.style.justifyContent = Justify.Center;
-        
+
         // Пытаемся загрузить спрайт товара
         if (product.Icon != null)
         {
@@ -558,7 +558,7 @@ public class ComputerUIHandler : MonoBehaviour
         // Информация о коробке (только для товаров с ItemsPerBox > 1)
         if (product.ItemsPerBox > 1)
         {
-            var boxInfoLabel = new Label($"Коробка: {product.ItemsPerBox} шт.");
+            var boxInfoLabel = new Label($"الصندوق: {product.ItemsPerBox} قطعة");
             boxInfoLabel.style.fontSize = 11;
             boxInfoLabel.style.color = new StyleColor(new Color(0.8f, 0.8f, 0.8f));
             boxInfoLabel.style.marginBottom = 5;
@@ -567,9 +567,9 @@ public class ComputerUIHandler : MonoBehaviour
 
         // Цена с учетом количества в коробке
         float totalPricePerBox = product.PurchasePrice * product.ItemsPerBox;
-        var priceLabel = new Label(product.ItemsPerBox > 1 ? 
-            $"${totalPricePerBox:F2} (${product.PurchasePrice:F2}/шт.)" : 
-            $"${product.PurchasePrice:F2}");
+        var priceLabel = new Label(product.ItemsPerBox > 1 ?
+            $"{totalPricePerBox:F0} DA ({product.PurchasePrice:F0} DA/قطعة)" :
+            $"{product.PurchasePrice:F0} DA");
         priceLabel.style.fontSize = 20;
         priceLabel.style.color = new StyleColor(new Color(76f/255f, 175f/255f, 80f/255f));
         priceLabel.style.unityFontStyleAndWeight = FontStyle.Bold;
@@ -593,14 +593,14 @@ public class ComputerUIHandler : MonoBehaviour
                 // Перерисовываем карточку
                 ReplaceCard(product, cart, updateCartAction);
             });
-            addButton.text = product.ItemsPerBox > 1 ? "Добавить коробку" : "إضافة";
+            addButton.text = product.ItemsPerBox > 1 ? "إضافة صندوق" : "إضافة";
             addButton.style.height = 35;
             addButton.style.paddingLeft = addButton.style.paddingRight = 20;
             addButton.style.backgroundColor = new StyleColor(new Color(76f/255f, 175f/255f, 80f/255f));
             addButton.style.color = Color.white;
             addButton.style.borderTopLeftRadius = addButton.style.borderTopRightRadius = addButton.style.borderBottomLeftRadius = addButton.style.borderBottomRightRadius = 5;
             addButton.style.borderLeftWidth = addButton.style.borderRightWidth = addButton.style.borderTopWidth = addButton.style.borderBottomWidth = 0;
-            
+
             quantityContainer.Add(addButton);
         }
         else
@@ -690,7 +690,7 @@ public class ComputerUIHandler : MonoBehaviour
         int totalBoxes = 0;
         int totalItems = 0;
         float totalAmount = 0;
-        
+
         foreach (var entry in cart)
         {
             int boxQuantity = entry.Value;
@@ -705,21 +705,21 @@ public class ComputerUIHandler : MonoBehaviour
         // Показываем количество коробок и общее количество товаров
         if (totalBoxes == 1)
         {
-            itemCountLabel.text = totalItems == 1 ? "1 коробка (1 товар)" : $"1 коробка ({totalItems} товаров)";
+            itemCountLabel.text = totalItems == 1 ? "صندوق واحد (منتج واحد)" : $"صندوق واحد ({totalItems} منتج)";
         }
         else
         {
-            itemCountLabel.text = $"{totalBoxes} коробок ({totalItems} товаров)";
+            itemCountLabel.text = $"{totalBoxes} صندوق ({totalItems} منتج)";
         }
-        
-        totalAmountLabel.text = $"${totalAmount:F0}";
-        
+
+        totalAmountLabel.text = $"{totalAmount:F0} DA";
+
         // Активация/деактивация кнопки заказа
         if (submitButton != null)
         {
             bool hasItems = totalItems > 0;
             submitButton.SetEnabled(hasItems);
-            
+
             // Изменяем стиль для визуального отображения состояния
             if (hasItems)
             {
@@ -736,12 +736,12 @@ public class ComputerUIHandler : MonoBehaviour
 
     private void OnSubmitGoodsOrderClicked(ClickEvent evt)
     {
-        SubmitOrder(_goodsCart, "товаров");
+        SubmitOrder(_goodsCart, "المنتجات");
     }
 
     private void OnSubmitFurnitureOrderClicked(ClickEvent evt)
     {
-        SubmitOrder(_furnitureCart, "мебели");
+        SubmitOrder(_furnitureCart, "الأثاث");
     }
 
     private void SubmitOrder(Dictionary<ProductConfig, int> cart, string itemType)
@@ -772,11 +772,11 @@ public class ComputerUIHandler : MonoBehaviour
         if (productsToOrder.Count == 0)
         {
             Debug.Log($"ComputerUIHandler: No {itemType} selected for order.");
-            string noItemsMessage = $"Не выбрано {itemType} для заказа";
-            
+            string noItemsMessage = $"لم يتم اختيار {itemType} للطلب";
+
             // Показываем уведомление в общей системе уведомлений
             _notificationService?.ShowNotification(noItemsMessage, NotificationType.Warning);
-            
+
             // Показываем локальное уведомление в интерфейсе компьютера
             ShowComputerNotification($"⚠ {noItemsMessage}", NotificationType.Warning, 3f);
             return;
@@ -788,17 +788,17 @@ public class ComputerUIHandler : MonoBehaviour
             _playerDataService.SaveData();
 
             Debug.Log($"ComputerUIHandler: Order submitted! Total: {currentOrderTotal:F2}. Remaining money: {_playerDataService.GetMoney():F2}");
-            
+
             if (_statsService != null)
             {
                 _statsService.RecordPurchase(currentOrderTotal);
             }
-            
+
             if (_deliveryService != null)
             {
                 // Используем новый метод с отложенной доставкой
                 string orderId = _deliveryService.PlaceOrder(productsToOrder);
-                
+
                 if (!string.IsNullOrEmpty(orderId))
                 {
                     Debug.Log($"ComputerUIHandler: Order {orderId} placed successfully");
@@ -830,25 +830,25 @@ public class ComputerUIHandler : MonoBehaviour
                 PopulateFurnitureCards();
                 UpdateFurnitureCartDisplay();
             }
-            
-            string successMessage = $"Заказ {itemType} оформлен на сумму ${currentOrderTotal:F0}";
-            
+
+            string successMessage = $"تم طلب {itemType} بقيمة {currentOrderTotal:F0} DA";
+
             // Показываем уведомление в общей системе уведомлений
             _notificationService?.ShowNotification(successMessage, NotificationType.Success);
-            
+
             // Показываем локальное уведомление в интерфейсе компьютера
             ShowComputerNotification($"✓ {successMessage}", NotificationType.Success, 4f);
         }
         else
         {
             Debug.LogWarning($"ComputerUIHandler: Not enough money to place order. Required: {currentOrderTotal:F2}, Available: {_playerDataService.CurrentPlayerData.Money:F2}");
-            
+
             float shortage = currentOrderTotal - _playerDataService.CurrentPlayerData.Money;
-            string insufficientFundsMessage = $"Недостаточно денег! Не хватает: ${shortage:F0}";
-            
+            string insufficientFundsMessage = $"الرصيد غير كاف! ينقصك {shortage:F0} DA";
+
             // Показываем уведомление в общей системе уведомлений
             _notificationService?.ShowNotification(insufficientFundsMessage, NotificationType.Error);
-            
+
             // Показываем локальное уведомление в интерфейсе компьютера
             ShowComputerNotification($"✕ {insufficientFundsMessage}", NotificationType.Error, 5f);
         }
@@ -857,13 +857,13 @@ public class ComputerUIHandler : MonoBehaviour
     private string GetCategoryDisplayName(ProductConfig product)
     {
         if (product.ObjectCategory == PlaceableObjectType.Goods)
-            return "Товар";
+            return "منتج";
         else if (product.ObjectCategory == PlaceableObjectType.Shelf)
-            return "Полка";
+            return "رف";
         else if (product.ObjectCategory == PlaceableObjectType.CashDesk)
-            return "Касса";
+            return "صندوق دفع";
         else
-            return "Другое";
+            return "أخرى";
     }
 
     private void PopulateProductPriceList()
@@ -872,7 +872,7 @@ public class ComputerUIHandler : MonoBehaviour
 
         _productPriceListScrollView.Clear();
         _salePriceFields.Clear();
-        
+
         // Получаем только товары, которые могут быть размещены на полках
         var allProducts = _productCatalogService.GetAllProductConfigs()
             .Where(product => product.CanBePlacedOnShelf)
@@ -881,7 +881,7 @@ public class ComputerUIHandler : MonoBehaviour
         // Если нет товаров для отображения, показываем сообщение
         if (allProducts.Count == 0)
         {
-            var noProductsLabel = new Label("Нет товаров, которые можно разместить на полках");
+            var noProductsLabel = new Label("لا توجد منتجات متاحة للرفوف");
             noProductsLabel.style.color = new StyleColor(new Color(0.6f, 0.6f, 0.6f));
             noProductsLabel.style.fontSize = 14;
             noProductsLabel.style.unityTextAlign = TextAnchor.MiddleCenter;
@@ -912,9 +912,9 @@ public class ComputerUIHandler : MonoBehaviour
             nameLabel.style.fontSize = 14;
             nameLabel.style.unityFontStyleAndWeight = FontStyle.Bold;
             nameLabel.style.whiteSpace = WhiteSpace.Normal;
-            
+
             // Цена закупки
-            var purchasePriceLabel = new Label($"Закупка: ${productConfig.PurchasePrice:F0}");
+            var purchasePriceLabel = new Label($"الشراء: {productConfig.PurchasePrice:F0} DA");
             purchasePriceLabel.style.width = new Length(18, LengthUnit.Percent);
             purchasePriceLabel.style.fontSize = 12;
             purchasePriceLabel.style.color = new StyleColor(new Color(0.8f, 0.8f, 0.8f));
@@ -926,12 +926,12 @@ public class ComputerUIHandler : MonoBehaviour
             salePriceContainer.style.width = new Length(35, LengthUnit.Percent);
             salePriceContainer.style.marginRight = 10;
 
-            var salePriceLabel = new Label("Продажа: $");
+            var salePriceLabel = new Label("البيع: DA ");
             salePriceLabel.style.marginRight = 5;
             salePriceLabel.style.fontSize = 12;
             salePriceLabel.style.color = new StyleColor(new Color(0.8f, 0.8f, 0.8f));
             salePriceLabel.style.flexShrink = 0; // Не сжимать лейбл
-            
+
             var salePriceField = new FloatField();
             // Получаем актуальную розничную цену (может быть кастомной)
             float currentPrice = _retailPriceService?.GetRetailPrice(productConfig.ProductID) ?? productConfig.BaseSalePrice;
@@ -977,28 +977,28 @@ public class ComputerUIHandler : MonoBehaviour
 
         // Получаем текущую розничную цену
         float currentPrice = _retailPriceService.GetRetailPrice(productConfig.ProductID);
-        
-        if (Mathf.Approximately(currentPrice, newPrice)) 
+
+        if (Mathf.Approximately(currentPrice, newPrice))
         {
-            _notificationService?.ShowNotification("Цена не изменилась", NotificationType.Warning);
-            ShowComputerNotification("⚠ Цена не изменилась", NotificationType.Warning);
-            return; // Цена не изменилась
+            _notificationService?.ShowNotification("السعر لم يتغير", NotificationType.Warning);
+            ShowComputerNotification("⚠ السعر لم يتغير", NotificationType.Warning);
+            return; // السعر لم يتغير
         }
 
         // Устанавливаем новую цену через RetailPriceService
         _retailPriceService.SetRetailPrice(productConfig.ProductID, newPrice);
-        
+
         // Показываем уведомление об успешном изменении цены
         _notificationService?.ShowNotification(
-            $"Цена '{productConfig.ProductName}' изменена с ${currentPrice:F2} на ${newPrice:F2}", 
+            $"تم تغيير سعر '{productConfig.ProductName}' من {currentPrice:F0} DA إلى {newPrice:F0} DA",
             NotificationType.Success
         );
-        
+
         Debug.Log($"ComputerUIHandler: Price for '{productConfig.ProductName}' changed from ${currentPrice:F2} to ${newPrice:F2}");
-        
+
         // Показываем локальное уведомление в интерфейсе компьютера
         ShowComputerNotification(
-            $"✓ Цена '{productConfig.ProductName}' изменена с ${currentPrice:F2} на ${newPrice:F2}",
+            $"✓ تم تغيير سعر '{productConfig.ProductName}' من {currentPrice:F0} DA إلى {newPrice:F0} DA",
             NotificationType.Success
         );
     }
@@ -1009,15 +1009,15 @@ public class ComputerUIHandler : MonoBehaviour
         if (_statsService != null)
         {
             // Финансовая статистика
-            if (_totalRevenueLabel != null) _totalRevenueLabel.text = $"${_statsService.GetTotalRevenue():F2}";
-            if (_totalExpensesLabel != null) _totalExpensesLabel.text = $"${_statsService.GetTotalExpenses():F2}";
-            if (_profitLabel != null) _profitLabel.text = $"${_statsService.GetProfit():F2}";
-            
-            // Статистика покупателей  
+            if (_totalRevenueLabel != null) _totalRevenueLabel.text = $"{_statsService.GetTotalRevenue():F0} DA";
+            if (_totalExpensesLabel != null) _totalExpensesLabel.text = $"{_statsService.GetTotalExpenses():F0} DA";
+            if (_profitLabel != null) _profitLabel.text = $"{_statsService.GetProfit():F0} DA";
+
+            // Статистика покупателей
             if (_totalCustomersLabel != null) _totalCustomersLabel.text = _statsService.GetTotalCustomersServed().ToString();
             if (_customersTodayLabel != null) _customersTodayLabel.text = _statsService.GetCustomersToday().ToString();
-            if (_averageTransactionLabel != null) _averageTransactionLabel.text = $"${_statsService.GetAverageTransactionValue():F2}";
-            
+            if (_averageTransactionLabel != null) _averageTransactionLabel.text = $"{_statsService.GetAverageTransactionValue():F0} DA";
+
             // Статистика товаров
             if (_totalItemsSoldLabel != null) _totalItemsSoldLabel.text = _statsService.GetTotalItemsSold().ToString();
             if (_bestSellingProductLabel != null) _bestSellingProductLabel.text = _statsService.GetBestSellingProduct();
@@ -1080,7 +1080,7 @@ public class ComputerUIHandler : MonoBehaviour
             licenseName.style.color = Color.white;
             licenseName.style.unityFontStyleAndWeight = FontStyle.Bold;
 
-            var productCount = new Label($"{license.GetProductCount()} товаров");
+            var productCount = new Label($"{license.GetProductCount()} منتجات");
             productCount.style.fontSize = 12;
             productCount.style.color = new StyleColor(new Color(0.67f, 0.67f, 0.67f));
             productCount.style.backgroundColor = new StyleColor(new Color(15f/255f, 52f/255f, 96f/255f));
@@ -1124,14 +1124,14 @@ public class ComputerUIHandler : MonoBehaviour
             cardFooter.style.justifyContent = Justify.SpaceBetween;
             cardFooter.style.alignItems = Align.Center;
 
-            var price = new Label(license.Price > 0 ? $"${license.Price:F0}" : "مجاني");
+            var price = new Label(license.Price > 0 ? $"{license.Price:F0} DA" : "مجاني");
             price.style.fontSize = 20;
             price.style.color = new StyleColor(new Color(76f/255f, 175f/255f, 80f/255f));
             price.style.unityFontStyleAndWeight = FontStyle.Bold;
 
             // Проверяем, куплена ли лицензия
             bool isPurchased = _licenseService.IsLicensePurchased(license.LicenseId);
-            
+
             if (isPurchased)
             {
                 // Лицензия уже куплена
@@ -1153,11 +1153,11 @@ public class ComputerUIHandler : MonoBehaviour
                 purchaseButton.style.color = Color.white;
                 purchaseButton.style.borderTopLeftRadius = purchaseButton.style.borderTopRightRadius = purchaseButton.style.borderBottomLeftRadius = purchaseButton.style.borderBottomRightRadius = 4;
                 purchaseButton.style.borderLeftWidth = purchaseButton.style.borderRightWidth = purchaseButton.style.borderTopWidth = purchaseButton.style.borderBottomWidth = 0;
-                
+
                 // Проверяем, хватает ли денег
                 bool canAfford = _playerDataService != null && _playerDataService.GetMoney() >= license.Price;
                 purchaseButton.SetEnabled(canAfford);
-                
+
                 cardFooter.Add(price);
                 cardFooter.Add(purchaseButton);
             }
@@ -1184,7 +1184,7 @@ public class ComputerUIHandler : MonoBehaviour
         }
 
         bool success = _licenseService.PurchaseLicense(licenseId);
-        
+
         if (success)
         {
             var license = _licenseService.GetLicense(licenseId);
@@ -1193,17 +1193,17 @@ public class ComputerUIHandler : MonoBehaviour
                 // Показываем уведомление об успешной покупке
                 if (_notificationService != null)
                 {
-                    _notificationService.ShowNotification($"Лицензия '{license.LicenseName}' успешно приобретена!");
+                    _notificationService.ShowNotification($"تم شراء الترخيص '{license.LicenseName}' بنجاح!");
                 }
-                
+
                 Debug.Log($"ComputerUIHandler: Successfully purchased license '{license.LicenseName}'");
-                
+
                 // Обновляем UI лицензий
                 PopulateLicensesList();
-                
+
                 // Обновляем список товаров для заказа (могли разблокироваться новые товары)
                 PopulateGoodsCards();
-                
+
                 // Обновляем список товаров для управления ценами
                 PopulateProductPriceList();
             }
@@ -1214,12 +1214,12 @@ public class ComputerUIHandler : MonoBehaviour
             if (_notificationService != null)
             {
                 var license = _licenseService.GetLicense(licenseId);
-                string message = license != null 
-                    ? $"Недостаточно средств для покупки '{license.LicenseName}'. Требуется: ${license.Price:F0}"
-                    : "Ошибка при покупке лицензии";
+                string message = license != null
+                    ? $"الرصيد غير كاف لشراء '{license.LicenseName}'. المطلوب: {license.Price:F0} DA"
+                    : "حدث خطأ أثناء شراء الترخيص";
                 _notificationService.ShowNotification(message);
             }
-            
+
             Debug.LogWarning($"ComputerUIHandler: Failed to purchase license '{licenseId}'");
         }
     }
@@ -1233,9 +1233,9 @@ public class ComputerUIHandler : MonoBehaviour
 
         var subcategories = new Dictionary<FurnitureSubcategory, string>
         {
-            { FurnitureSubcategory.All, "Вся мебель" },
-            { FurnitureSubcategory.Shelves, "Полки" },
-            { FurnitureSubcategory.CashDesks, "Кассы" }
+            { FurnitureSubcategory.All, "كل الأثاث" },
+            { FurnitureSubcategory.Shelves, "الرفوف" },
+            { FurnitureSubcategory.CashDesks, "صناديق الدفع" }
         };
 
         foreach (var subcategory in subcategories)
@@ -1248,7 +1248,7 @@ public class ComputerUIHandler : MonoBehaviour
             button.style.color = Color.white;
             button.style.borderTopLeftRadius = button.style.borderTopRightRadius = button.style.borderBottomLeftRadius = button.style.borderBottomRightRadius = 3;
             button.style.borderLeftWidth = button.style.borderRightWidth = button.style.borderTopWidth = button.style.borderBottomWidth = 0;
-            
+
             if (subcategory.Key == _currentFurnitureSubcategory)
             {
                 button.style.backgroundColor = new StyleColor(new Color(15f/255f, 52f/255f, 96f/255f));
@@ -1268,8 +1268,8 @@ public class ComputerUIHandler : MonoBehaviour
 
     private void UpdateFurnitureSubcategoryButtons()
     {
-        var subcategories = new List<FurnitureSubcategory> 
-        { 
+        var subcategories = new List<FurnitureSubcategory>
+        {
             FurnitureSubcategory.All, FurnitureSubcategory.Shelves, FurnitureSubcategory.CashDesks
         };
 
@@ -1339,7 +1339,7 @@ public class ComputerUIHandler : MonoBehaviour
         header.style.alignItems = Align.Center;
         header.style.marginBottom = 10;
 
-        var orderId = new Label($"Заказ #{order.OrderId.Replace("ORDER_", "")}");
+        var orderId = new Label($"طلب #{order.OrderId.Replace("ORDER_", "")}");
         orderId.style.fontSize = 16;
         orderId.style.color = Color.white;
         orderId.style.unityFontStyleAndWeight = FontStyle.Bold;
@@ -1363,7 +1363,7 @@ public class ComputerUIHandler : MonoBehaviour
 
         var orderTimeContainer = new VisualElement();
         orderTimeContainer.style.flexDirection = FlexDirection.Column;
-        var orderTimeLabel = new Label("Время заказа:");
+        var orderTimeLabel = new Label("وقت الطلب:");
         orderTimeLabel.style.fontSize = 11;
         orderTimeLabel.style.color = new StyleColor(new Color(0.6f, 0.6f, 0.6f));
         var orderTime = new Label(order.OrderTime.ToString("HH:mm"));
@@ -1375,7 +1375,7 @@ public class ComputerUIHandler : MonoBehaviour
         var remainingTimeContainer = new VisualElement();
         remainingTimeContainer.style.flexDirection = FlexDirection.Column;
         remainingTimeContainer.style.alignItems = Align.FlexEnd;
-        var remainingLabel = new Label("Осталось:");
+        var remainingLabel = new Label("المتبقي:");
         remainingLabel.style.fontSize = 11;
         remainingLabel.style.color = new StyleColor(new Color(0.6f, 0.6f, 0.6f));
         var remainingTime = new Label(FormatTime(order.DeliveryTime));
@@ -1396,7 +1396,7 @@ public class ComputerUIHandler : MonoBehaviour
         itemsContainer.style.borderTopLeftRadius = itemsContainer.style.borderTopRightRadius = itemsContainer.style.borderBottomLeftRadius = itemsContainer.style.borderBottomRightRadius = 4;
         itemsContainer.style.marginBottom = 10;
 
-        var itemsLabel = new Label("Товары в заказе:");
+        var itemsLabel = new Label("منتجات الطلب:");
         itemsLabel.style.fontSize = 12;
         itemsLabel.style.color = new StyleColor(new Color(0.67f, 0.67f, 0.67f));
         itemsLabel.style.marginBottom = 5;
@@ -1416,7 +1416,7 @@ public class ComputerUIHandler : MonoBehaviour
                     productName = productConfig.ProductName;
                 }
             }
-            
+
             var itemRow = new Label($"• {productName} x{item.Quantity}");
             itemRow.style.fontSize = 11;
             itemRow.style.color = Color.white;
@@ -1431,7 +1431,7 @@ public class ComputerUIHandler : MonoBehaviour
         footer.style.justifyContent = Justify.SpaceBetween;
         footer.style.alignItems = Align.Center;
 
-        var total = new Label($"Итого: ${order.TotalCost:F0}");
+        var total = new Label($"المجموع: {order.TotalCost:F0} DA");
         total.style.fontSize = 16;
         total.style.color = new StyleColor(new Color(76f/255f, 175f/255f, 80f/255f));
         total.style.unityFontStyleAndWeight = FontStyle.Bold;
@@ -1461,7 +1461,7 @@ public class ComputerUIHandler : MonoBehaviour
     private string FormatTime(float seconds)
     {
         if (seconds <= 0) return "جاري التوصيل...";
-        
+
         int minutes = Mathf.FloorToInt(seconds / 60f);
         int secs = Mathf.FloorToInt(seconds % 60f);
         return $"{minutes:D2}:{secs:D2}";
@@ -1476,14 +1476,14 @@ public class ComputerUIHandler : MonoBehaviour
         }
 
         float refund = _deliveryService.CancelOrder(orderId);
-        
+
         if (refund > 0)
         {
-            _notificationService?.ShowNotification($"Заказ отменен. Возврат: ${refund:F0}", NotificationType.Warning);
+            _notificationService?.ShowNotification($"تم إلغاء الطلب. المسترجع: {refund:F0} DA", NotificationType.Warning);
         }
         else
         {
-            _notificationService?.ShowNotification("Не удалось отменить заказ", NotificationType.Error);
+            _notificationService?.ShowNotification("تعذر إلغاء الطلب", NotificationType.Error);
         }
 
         // Обновляем список заказов
@@ -1496,7 +1496,7 @@ public class ComputerUIHandler : MonoBehaviour
         if (_isActiveOrdersSectionVisible && _deliveryService != null && Time.time - _lastTimerUpdate >= TIMER_UPDATE_INTERVAL)
         {
             var activeOrders = _deliveryService.GetActiveOrders();
-            
+
             // Проверяем, нужно ли обновлять UI (изменилось количество заказов или время)
             if (activeOrders.Count != _lastOrdersCount)
             {
@@ -1509,7 +1509,7 @@ public class ComputerUIHandler : MonoBehaviour
                 // Обновляем только таймеры если заказы есть
                 UpdateActiveOrdersTimersOptimized(activeOrders);
             }
-            
+
             _lastTimerUpdate = Time.time;
         }
     }
@@ -1520,12 +1520,12 @@ public class ComputerUIHandler : MonoBehaviour
 
         var orderCards = _activeOrdersContainer.Children().ToList();
         int updatedCount = 0;
-        
+
         for (int i = 0; i < orderCards.Count && i < activeOrders.Count; i++)
         {
             var card = orderCards[i];
             var order = activeOrders[i];
-            
+
             // Ищем именно элемент с таймером обратного отсчета
             var timeRemainingLabel = card.Q<Label>("TimeRemaining");
             if (timeRemainingLabel != null)
@@ -1538,13 +1538,13 @@ public class ComputerUIHandler : MonoBehaviour
                 }
             }
         }
-        
+
         if (updatedCount > 0)
         {
             Debug.Log($"ComputerUIHandler: Updated {updatedCount} order timers");
         }
     }
-    
+
     private void InitializeStoreSettings()
     {
         if (_storeNameField != null && _supermarketNameService != null)
@@ -1552,44 +1552,44 @@ public class ComputerUIHandler : MonoBehaviour
             _storeNameField.value = _supermarketNameService.CurrentName;
         }
     }
-    
+
     private void OnChangeStoreNameClicked(ClickEvent evt)
     {
         if (_supermarketNameService == null)
         {
-            ShowComputerNotification("✕ Сервис названия супермаркета недоступен", NotificationType.Error);
+            ShowComputerNotification("✕ خدمة اسم المتجر غير متاحة", NotificationType.Error);
             return;
         }
-        
+
         if (_storeNameField == null)
         {
-            ShowComputerNotification("✕ Поле ввода названия не найдено", NotificationType.Error);
+            ShowComputerNotification("✕ حقل اسم المتجر غير موجود", NotificationType.Error);
             return;
         }
-        
+
         string newName = _storeNameField.value?.Trim();
         if (string.IsNullOrEmpty(newName))
         {
-            ShowComputerNotification("⚠ Название не может быть пустым", NotificationType.Warning);
+            ShowComputerNotification("⚠ اسم المتجر لا يمكن أن يكون فارغا", NotificationType.Warning);
             return;
         }
-        
+
         // Проверяем, отличается ли новое название от текущего
         string currentName = _supermarketNameService.CurrentName;
         if (newName == currentName)
         {
-            ShowComputerNotification("⚠ Название не изменилось", NotificationType.Warning);
+            ShowComputerNotification("⚠ اسم المتجر لم يتغير", NotificationType.Warning);
             return;
         }
-        
+
         _supermarketNameService.SetName(newName);
-        ShowComputerNotification($"✓ Название изменено на: {newName}", NotificationType.Success);
-        
+        ShowComputerNotification($"✓ تم تغيير الاسم إلى: {newName}", NotificationType.Success);
+
         Debug.Log($"ComputerUIHandler: Store name changed to '{newName}'");
     }
-    
 
-    
+
+
     /// <summary>
     /// Показывает уведомление прямо в интерфейсе компьютера
     /// </summary>
@@ -1600,7 +1600,7 @@ public class ComputerUIHandler : MonoBehaviour
         // Создаем элемент уведомления
         var notification = new Label(message);
         notification.AddToClassList("computer-notification");
-        
+
         // Стилизация в зависимости от типа
         Color backgroundColor = type switch
         {
@@ -1609,7 +1609,7 @@ public class ComputerUIHandler : MonoBehaviour
             NotificationType.Error => new Color(198f/255f, 40f/255f, 40f/255f, 0.9f),   // Красный
             _ => new Color(33f/255f, 150f/255f, 243f/255f, 0.9f) // Синий для Info
         };
-        
+
         notification.style.backgroundColor = backgroundColor;
         notification.style.color = Color.white;
         notification.style.paddingLeft = 15;
@@ -1624,12 +1624,12 @@ public class ComputerUIHandler : MonoBehaviour
         notification.style.fontSize = 14;
         notification.style.whiteSpace = WhiteSpace.Normal;
         notification.style.textOverflow = TextOverflow.Ellipsis;
-        
+
         // Добавляем тень
-        notification.style.borderLeftWidth = notification.style.borderRightWidth = 
+        notification.style.borderLeftWidth = notification.style.borderRightWidth =
             notification.style.borderTopWidth = notification.style.borderBottomWidth = 1;
-        notification.style.borderLeftColor = notification.style.borderRightColor = 
-            notification.style.borderTopColor = notification.style.borderBottomColor = 
+        notification.style.borderLeftColor = notification.style.borderRightColor =
+            notification.style.borderTopColor = notification.style.borderBottomColor =
             new Color(0f, 0f, 0f, 0.2f);
 
         // Добавляем в контейнер
@@ -1638,20 +1638,20 @@ public class ComputerUIHandler : MonoBehaviour
         // Запускаем корутину для автоматического удаления
         StartCoroutine(RemoveComputerNotificationAfterDelay(notification, duration));
     }
-    
+
     /// <summary>
     /// Удаляет уведомление через заданное время
     /// </summary>
     private System.Collections.IEnumerator RemoveComputerNotificationAfterDelay(VisualElement notification, float delay)
     {
         yield return new WaitForSeconds(delay);
-        
+
         if (notification?.parent != null)
         {
             notification.parent.Remove(notification);
         }
     }
-    
+
     /// <summary>
     /// Обновляет отображение денег игрока в интерфейсе компьютера
     /// </summary>
@@ -1660,7 +1660,7 @@ public class ComputerUIHandler : MonoBehaviour
         if (_playerMoneyLabel != null && _playerDataService != null)
         {
             float money = _playerDataService.GetMoney();
-            _playerMoneyLabel.text = $"${money:F0}";
+            _playerMoneyLabel.text = $"{money:F0} DA";
         }
     }
-} 
+}
